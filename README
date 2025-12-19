@@ -1,0 +1,46 @@
+Auto-loaded lua plugins live inside this "~/.local/share/nvim/site/pack/*/start"
+directory. When neovim starts up this directory is added to `runtimepath`
+automatically. When you "require" a plugin, lua will look for required
+PLUGIN_NAME under the "lua" directory of all directories within directories of
+runtimepath.
+    {rtp}/lua/PLUGIN_NAME.lua
+    {rtp}/lua/PLUGIN_NAME/init.lua
+
+Directory structure is like follows:
+
+~/.local/share/nvim/site/pack/*/start
+│
+└── PLUGIN_NAME
+    └── lua
+        └── PLUGIN_FILE.lua
+
+Plugin will be in runtime path automatically.
+You import package file with: require("PLUGIN_FILE")
+
+Alternatively the plugin maybe organized as follows:
+
+~/.local/share/nvim/site/pack/*/start
+│
+└─ PLUGIN_NAME
+   └── lua
+       └── PLUGIN_NAME
+           └── init.lua
+
+Import package's init.lua file with: require("PLUGIN_NAME")
+
+If plugin directory has files other than "init.lua" then code in init.lua should
+import rest of these lua files and return them back to caller. Like so:
+
+------------
+  init.lua
+------------
+local M = {}
+
+vim.tbl_extend("error" | "force" | "keep", 
+    M,
+    require("PLUGIN_NAME.file_1"),
+    require("PLUGIN_NAME.file_2"),
+    ...
+)
+
+return M
