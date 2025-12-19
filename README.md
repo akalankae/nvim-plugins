@@ -11,31 +11,36 @@ runtimepath.
 
 Directory structure is like follows:
 
+```
 ~/.local/share/nvim/site/pack/*/start
 │
 └── PLUGIN_NAME
     └── lua
         └── PLUGIN_FILE.lua
+```
 
 Plugin will be in runtime path automatically.
 You import package file with: require("PLUGIN_FILE")
 
 Alternatively the plugin maybe organized as follows:
 
+```
 ~/.local/share/nvim/site/pack/*/start
 │
 └─ PLUGIN_NAME
    └── lua
        └── PLUGIN_NAME
            └── init.lua
+```
 
 Import package's init.lua file with: require("PLUGIN_NAME")
 
 If plugin directory has files other than "init.lua" then code in init.lua should
 import rest of these lua files and return them back to caller. Like so:
 
+```lua
 ------------
-  init.lua
+--  init.lua
 ------------
 local M = {}
 
@@ -47,3 +52,4 @@ vim.tbl_extend("error" | "force" | "keep",
 )
 
 return M
+```
