@@ -1,5 +1,6 @@
 # nvim-plugins
-Neovim plugins created for personal use
+
+**Neovim plugins created for personal use**
 
 Auto-loaded lua plugins live inside this "~/.local/share/nvim/site/pack/*/start"
 directory. When neovim starts up this directory is added to `runtimepath`
