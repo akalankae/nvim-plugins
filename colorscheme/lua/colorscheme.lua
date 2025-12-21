@@ -67,7 +67,7 @@ local function load_last_colorscheme(colorscheme_file, fallback)
     end
   end
   -- vim.cmd(string.format("colorscheme %s", use_colorscheme or fallback))
-  vim.cmd("colorscheme " .. use_colorscheme or fallback)
+  vim.cmd("colorscheme " .. (use_colorscheme or fallback))
   vim.notify("Loaded " .. vim.g.colors_name .. " colorscheme", vim.log.levels.INFO)
 end
 
